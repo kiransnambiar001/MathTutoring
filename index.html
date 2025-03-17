@@ -12,11 +12,15 @@
     <div class="text-center">
         <button class="btn btn-outline-primary btn-lg" id="join-btn">Join Video Call</button>
     </div>
+
+    <!-- contains the videos of the people on the call -->
     <div class="bg-light border border border-info-subtle mb-5" id="video-streams"></div>
-    <div class="bg-secondary-subtle">
-        <button class="btn btn-danger">Leave Call</button>
-        <button class="btn btn-secondary">Mic On</button>
-        <button class="btn btn-secondary">Camera On</button>
+
+    <!-- video call controls -->
+    <div class="bg-secondary-subtle" id="stream-controls">
+        <button class="btn btn-danger" id="leave-btn">Leave Call</button>
+        <button class="btn btn-secondary" id="mic-btn">Mic On</button>
+        <button class="btn btn-secondary" id="cam-btn">Camera On</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

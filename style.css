@@ -1,0 +1,14 @@
+#video-streams{
+    height:90vh;
+    width:1400px;
+}
+
+.video-player{
+    height: 100%;
+    width: 100%;
+}
+
+#stream-controls{
+    display:none;
+}
+
