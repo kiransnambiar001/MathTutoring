@@ -1,28 +1,53 @@
 const APP_ID = "bf72940f350d4adf951d7600d2ab52c1"
-const TOKEN = "007eJxTYHhq1rLG4mje1c3+RmKComdXHmI7/fbMBPt1599MCoqO/5qrwJCUZm5kaWKQZmxqkGKSmJJmaWqYYm5mYJBilJhkapRseLn4RnpDICPDNqt1LIwMEAjiszDkJmbmMTAAAMREIWE="
-const CHANNEL = "main"
+const TOKEN = "007eJxTYOi681ea13+DwUtuvtjbN/dzrPm8nyVtXtMkO+GT3MIT7vYrMCSlmRtZmhikGZsapJgkpqRZmhqmmJsZGKQYJSaZGiUblu69md4QyMgwyYGVmZEBAkF8HobcxJKMktKS/KLMvHQGBgBA7yJc"
+const CHANNEL = "mathtutoring"
 
-const client = Agora.createClient({mode:'rtc', codec:'vp8'})
+const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
 let localTracks = []
 let remoteUsers = {}
 
 let joinAndDisplayLocalStream = async () => {
-
-    let UID = await client.join(APP_ID, CHANNEL, TOKEN, null)
-
-    localTracks = await AgoraRTC.createMicrophoneAndCameraTracks()
-
-    let player = `<div class="border border-primary rounded-2" id="user-container-${UID}>
-                    <div class="video-player"id="user=${UID}></div>
-                  </div>`
     
-    document.getElementById('video-streams'),insertAdjacentHTML('beforeend', player)
 
-    localTracks[1].play(`user=${UID}`)
+    client.on('user-published', handleUserJoined)
+    await client.join(APP_ID, CHANNEL, TOKEN, null);
 
-    await client.publish([localTracks[0], localTracks[1]])
-}
+    let localVideoTrack = await AgoraRTC.createCameraVideoTrack();
+    let localMicTrack = await AgoraRTC.createMicrophoneAudioTrack();
+    localVideoTrack.play("local-video");
+
+    await client.publish([localMicTrack, localVideoTrack]);
+
+    console.log("Local video track published!");
+};
+
+let handleUserJoined = async (user, mediaType) => {
+    remoteUsers[user.uid] = user;
+    await client.subscribe(user, mediaType);
+
+    let player = document.getElementById(`user-container-${user.uid}`);
+    if (!player) {
+        player = document.createElement('div');
+        player.id = `user-container-${user.uid}`;
+        player.className = "stream-container";
+        player.innerHTML = `<div class="remote-video" id="user-${user.uid}"></div>`;
+        document.getElementById('video-streams').appendChild(player);
+    }
+    if (user.videoTrack) {
+        if (mediaType === 'video') {
+            user.videoTrack.play(`user-${user.uid}`); // Corrected to ensure it's playing
+        }
+    } else {
+        console.log('VIDEO TRACK DOSENT exists')
+        console.log(user)
+    }
+        
+
+    if (mediaType === "audio") {
+        user.audioTrack.play();
+    }
+};
 
 let joinStream = async () => {
     await joinAndDisplayLocalStream()

@@ -1,0 +1,39 @@
+#video-streams{
+    height:90vh;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#stream-controls{
+    display:none;
+}
+
+.stream-container {
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; /* Ensure it has a defined height */
+    width: 100vh;
+}
+
+#local-video {
+    width: 400px;  /* Set a fixed width */
+    height: 300px; /* Set a fixed height */
+    background-color: black;
+    display: flex; /* Ensures content inside is properly aligned */
+    justify-content: center;
+    align-items: center;
+}
+
+#remote-video {
+    width: 400px;  /* Set a fixed width */
+    height: 300px; /* Set a fixed height */
+    background-color: black;
+    display: flex; /* Ensures content inside is properly aligned */
+    justify-content: center;
+    align-items: center;
+}
+
