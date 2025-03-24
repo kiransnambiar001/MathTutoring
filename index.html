@@ -10,7 +10,7 @@
   </head>
   <body class="bg-dark">
 
-    <nav class="navbar navbar-expand-lg bg-dark rounded-bottom-4 border-2 border-bottom" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-dark rounded-bottom-2 border-2 border-bottom" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -35,7 +35,23 @@
     <div id="video-streams"></div>
     
     <!-- Video call controls -->
-    <button class="btn btn-outline-primary btn-lg" id="join-btn">Join Video Call</button>
+    <div class="justify-content-center align-items-center vh-100" id="lobby">
+      <div class="card p-4 shadow-lg bg-light" style="width: 350px;">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-3">Join Room</h5>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Room Key" id="room-key-input">
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Channel Name" id="channel-name-input">
+          </div>
+          <button class="btn btn-primary w-100" id="join-btn">Join</button>
+        </div>
+      </div>
+    </div>
+    
+
+
     <div class="bg-secondary-subtle" id="stream-controls" style="display:none;">
 
         <button class="btn btn-danger" id="leave-btn">

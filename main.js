@@ -1,6 +1,6 @@
 const APP_ID = "bf72940f350d4adf951d7600d2ab52c1"
-const TOKEN = "007eJxTYFhgOnHr3Gt35YI2v46W31Df/jCkIshTtZ/ncm8l37vC+6sVGJLSzI0sTQzSjE0NUkwSU9IsTQ1TzM0MDFKMEpNMjZIN69jupTcEMjLor7nIwAiFID4vQ0Z+QWpJRmZxeX5RdjEDAwDTZiQ5"
-const CHANNEL = "hopethisworks"
+let TOKEN;
+let CHANNEL;
 
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'});
 
@@ -34,7 +34,13 @@ let startLocalPreview = async () => {
 };
 
 let joinAndDisplayLocalStream = async () => {
+    let joinError = false
     try {
+        TOKEN = document.getElementById('room-key-input').value.toString(); 
+        console.log(TOKEN);
+        CHANNEL = document.getElementById('channel-name-input').value.toString(); 
+        console.log(CHANNEL);
+        
         client.on('user-published', handleUserJoined);
         client.on('user-left', handleUserLeft);
         let uid = await client.join(APP_ID, CHANNEL, TOKEN, null);
@@ -50,7 +56,10 @@ let joinAndDisplayLocalStream = async () => {
 
     } catch (error) {
         console.error("Error publishing to Agora:", error);
+
+        joinError = true
     }
+    return joinError
 };
 
 
@@ -95,10 +104,15 @@ let handleUserLeft = async (user) => {
 
 let joinStream = async () => {
     try {
-        await joinAndDisplayLocalStream();
+        joinError = await joinAndDisplayLocalStream();
         
-        document.getElementById('join-btn').style.display = 'none';
-        document.getElementById('stream-controls').style.display = 'flex';
+        if (joinError) {
+
+        } else {
+            
+        }
+            document.getElementById('lobby').style.display = 'none';
+            document.getElementById('stream-controls').style.display = 'flex';
 
     } catch (error) {
         console.error("Error joining stream:", error);
@@ -107,7 +121,7 @@ let joinStream = async () => {
 
 let leaveStreamAndRemoveLocalStream = async() => {
     await client.leave();
-    document.getElementById('join-btn').style.display = 'block';
+    document.getElementById('lobby').style.display = 'flex';
     document.getElementById('stream-controls').style.display = 'none';
     document.getElementById('video-streams').innerHTML = '';
 }
@@ -153,4 +167,3 @@ document.getElementById('join-btn').addEventListener('click', joinStream);
 document.getElementById('leave-btn').addEventListener('click', leaveStreamAndRemoveLocalStream);
 document.getElementById('mic-btn').addEventListener('click', toggleMic);
 document.getElementById('cam-btn').addEventListener('click', toggleCam);
-
