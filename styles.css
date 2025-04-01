@@ -75,7 +75,6 @@
     display: flex;
     gap: 15px;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     z-index: 1000;
 }
