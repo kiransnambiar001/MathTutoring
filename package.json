@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "request": "^2.88.2",
+    "white-web-sdk": "^2.16.53"
+  }
+}
