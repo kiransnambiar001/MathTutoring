@@ -3,131 +3,132 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    
+    <title>Really Smart Math Tutoring</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+    <link rel="stylesheet" href="indexStyles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
   </head>
   <body class="bg-dark">
 
-    <nav class="navbar navbar-expand-lg bg-dark rounded-bottom-2 border-2 border-bottom" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-dark rounded-bottom-2 border-2 border-bottom" id="navbar" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">R-S-M-T</a>
+        <a class="navbar-brand" href="#">
+          <img src="assets/logo.png" alt="R-S-M-T" style="height: 32px; width: 32px;">
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
+              <a class="nav-link disabled" aria-disabled="true">Home</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              <a class="nav-link active" aria-current="page" href="videoCall.html">Call</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- Local video outside the grid -->
-    <div id="local-video-container">
-        <div id="local-video"></div>
+    <div class="parallax d-flex align-items-center" style="background-image: url('assets/math.jpg');">
+      <figure class="p-3 text-center bg-light rounded-3 mx-auto">
+        <blockquote class="blockquote">
+          <p class="display-1">R-S-M-T</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          Really Smart Math Tutoring
+        </figcaption>
+      </figure>
     </div>
+    <div class="bg-dark text-light p-3 border-bottom border-secondary border-4">
+      <p class="display-6">What is R-S-M-T?</p>
+      <p>For multiple decades, tutoring has been essential to nurture the next generation of mathematicians. We are a team of students who want to make tutoring accessible to everyone. Websites have the possibility to make tutoring easier and better than before, with many tools and features that can aid tutors. This is R-S-M-T, a simple showcase of the capable nature of websites in this industry.</p>
+      <hr>
+      
+      <p class="display-1 text-center">Meet Our Team</p>
+    </div>
+    <div class="parallax" style="background-image: url('assets/kiran.png'); height: 50%;"></div>
+    <div class="p-5 bg-dark text-light border-top border-bottom border-secondary border-4">
+      <p class="display-3">I am Kiran.</p>
+      <p><strong>I was the main developer of the website</strong> I made the website with the addition of the feedback I got from my team partners. I also was there when they were tutoring to oversee if anything went wrong with the website.</p>
+    </div>
+    <div class="parallax" style="background-image: url('assets/anderson.png'); height: 50%;"></div>
+    <div class="p-5 bg-dark text-light border-top border-bottom border-secondary border-4">
+      <p class="display-3">I am Anderson.</p>
+      <p><strong>I helped with tutoring and curating tutoring plans while giving feedback on the website.</strong> I got people to tutor, so we could test the capabilities of the website, and did the nevessary work to prepare and tutor math to people.</p>
+    </div>
+    <div class="parallax" style="background-image: url('assets/Rishab.png'); height: 50%;"></div>
+    <div class="p-5 bg-dark text-light border-top border-secondary border-4">
+      <p class="display-3">I am Rishab.</p>
+      <p><strong>I helped with tutoring and and developing ideas for the website.</strong> I decided to help tutor students with this website. I also helped to make ideas the website so we could have different perspectives to improve the functionality and look of the website.</p>
+    </div>
+    <div class="" id="rsmtSvgScrollingContainer" style="position: fixed; text-align: center; top: 25%; left: 20%; height: 100%; width: 100;">
+      <svg width="1198" height="496" viewBox="0 0 1198 496" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+        <path id="rsmtSvgPath" d="M17 493C17.5733 400.511 17.3592 324.363 16.6194 262M16.6194 262C14.262 63.2819 6.56681 4.52227 2 3C148.199 36.2102 279.412 25.1413 189 201C128.205 261.871 91.4517 280.847 16.6194 262ZM16.6194 262C16.6194 262 228.666 382.026 200 493H289.5C420.505 496.603 535.5 446 505 356C505 356 448.5 325 310 266C171.5 207 281.088 35.7022 518 47.5L608 466L695 47.5L764.5 201L826 47.5L952 466H1082.5V47.5H952H1198" stroke="#55c5a6" stroke-width="5"/>
+      </svg>
+    </div>
+    <div class="bg-dark border-top" style="height: 200vh;"></div>
+    <div class="lead text-light p-3 text-center"> Really Smart Math Tutoring. The future of tutoring.</div>
 
-    <!-- Remote videos grid -->
-    <div id="video-streams"></div>
-    
-    <!-- Video call controls -->
-    <div class="justify-content-center align-items-center vh-100" id="lobby">
-      <div class="card p-4 shadow-lg bg-light" style="width: 350px;">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-3">Join Room</h5>
-          <div class="mb-3 form-floating">
-            <input type="text" class="form-control" placeholder="Room Key" id="room-key-input">
-            <label for="room-key-input">Room Key</label>
+      <!-- <div class="row align-items-center m-5">
+        <div class="col">
+          <div class="card p-3" style="width: 18rem;" data-bs-theme="dark">
+            <div class="card-body">
+              <h5 class="card-title">Our Goals</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary mb-2">Why did we decide to tutor?</h6>
+              <p class="card-text">We want to make tutoring accessible to everyone, so we made a custom website with all the tools necessary to teach math. This website has a whiteboard, a video chat system and a question display system. Since tutoring needs are on the rise, we want to contribute to the cause. We even tested it ourselves, by tutoring a few students with this curated website.</p>
+            </div>
           </div>
-          <div class="mb-3 form-floating">
-            <input type="text" class="form-control" placeholder="Channel Name" id="channel-name-input">
-            <label for="channel-name-input">Channel Name</label>
+        </div>
+        <div class="col">
+          <div class="accordion" id="accordionExample" data-bs-theme="dark">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Rishab
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>I helped with tutoring and and developing ideas for the website.</strong> I decided to help tutor students with this website. I also helped to make ideas the website so we could have different perspectives to improve the functionality and look of the website.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Anderson
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>I helped with tutoring and curating tutoring plans while giving feedback on the website</strong> I got people to tutor, so we could test the capabilities of the website, asnd did the nevessary work to prepare and tutor math to people.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Kiran
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>I was the main developer of the website</strong> I made the website with the addition of the feedback I got from my team partners. I also was there when they were tutoring to oversee if anything went wrong with the website.
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="mb-3 form-floating">
-            <input type="text" class="form-control" placeholder="Username" id="username-input">
-            <label for="username-input">Username</label>
-          </div>
-          <button class="btn btn-primary w-100" id="join-btn">
-          <span class="spinner-border spinner-border-sm visually-hidden" id="joinButtonLoading" aria-hidden="true"></span>
-          <span class="" id="joinButtonText" role="status">Join</span>
-          </button>
-          <small id="joinErrorHelp" class="form-text text-danger">Incorrect room key or channel name.</small>
         </div>
-      </div>
-    </div>
-    
-
-
-    <div class="" id="stream-controls" style="display:none;">
-
-        <button class="btn btn-danger rounded-pill shadow" id="leave-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-x-fill" viewBox="0 0 16 16" style="color: white;">
-            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zm9.261 1.135a.5.5 0 0 1 .708 0L13 2.793l1.146-1.147a.5.5 0 0 1 .708.708L13.707 3.5l1.147 1.146a.5.5 0 0 1-.708.708L13 4.207l-1.146 1.147a.5.5 0 0 1-.708-.708L12.293 3.5l-1.147-1.146a.5.5 0 0 1 0-.708"/>
-          </svg>
-        </button>
-
-        <button class="btn btn-secondary rounded-pill shadow" id="mic-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16" style="color: white;">
-            <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/>
-            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
-          </svg>
-        </button>
-        
-        <button class="btn btn-secondary rounded-pill shadow" id="cam-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16" style="color: white;">
-            <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2z"/>
-          </svg>
-        </button>
-    </div>    
-
-    <div class="toast-container position-fixed top-0 end-0 p-3" data-bs-theme="dark">
-      <div id="top-right-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <strong class="me-auto text-white" id="top-right-toast-title">Bootstrap</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body text-white" id="top-right-toast-text">
-          User has joined.
-        </div>
-      </div>
-    </div>
-
-    <div class="position-fixed top-50 start-50 translate-middle" id="emptyCallText" style="display: none;">
-      <strong class="text-white h1">No one else is here.</strong>
-    </div>
+      </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-</body>
-    <script src="https://sdk.netless.link/white-web-sdk/2.15.16.js"></script>
-    <script src="AgoraRTC_N-4.23.2.js"></script>
-    <script src="videoCall.js"></script>
-    <script src="whiteboard/whiteBoard.js"></script>
+    <script src="landingPage.js"></script>
+  </body>
 </html>

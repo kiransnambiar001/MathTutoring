@@ -1,0 +1,20 @@
+body, html {
+    height: 100%;
+  }
+  
+.parallax {
+/* Full height */
+height: 100%;
+
+/* Create the parallax scrolling effect */
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+#navbar {
+    z-index: 1000 !important;
+    position: fixed !important;
+    width: 100% !important;
+}

@@ -9,6 +9,8 @@ let localMicTrack;
 let remoteUsers = {};
 let micMuted = false;
 let cameraMuted = false;
+let questions = [];
+let questionIndex = 0;
 
 
 
@@ -54,6 +56,8 @@ async function startLocalPreview() {
 
 let joinAndDisplayLocalStream = async () => {
     let joinError = ''
+    let uid;
+    let username;
     if (document.getElementById('username-input').value == '') {
         joinError = 'username';
     } else {
@@ -65,8 +69,8 @@ let joinAndDisplayLocalStream = async () => {
             
             client.on('user-published', handleUserJoined);
             client.on('user-left', handleUserLeft);
-            let uid = Math.floor(1000000000 + Math.random() * 9000000000).toString();
-            let username = document.getElementById('username-input').value.toString();
+            uid = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+            username = document.getElementById('username-input').value.toString();
             await client.join(APP_ID, CHANNEL, TOKEN, uid+username);
 
             // Convert the local preview tracks to AgoraRTC tracks
@@ -86,7 +90,7 @@ let joinAndDisplayLocalStream = async () => {
         }
     }
         
-    return joinError
+    return [joinError, uid+username]
 };
 
 
@@ -130,10 +134,10 @@ let handleUserJoined = async (user, mediaType) => {
     }
 
     // show user joined toast
-    let toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('top-right-toast'));
-    document.getElementById('top-right-toast-text').innerHTML = `User ${username}`
-    document.getElementById('top-right-toast-title').innerHTML = `User Joined`
-    toastBootstrap.show()
+    // let toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('top-right-toast'));
+    // document.getElementById('top-right-toast-text').innerHTML = `User ${username}`
+    // document.getElementById('top-right-toast-title').innerHTML = `User Joined`
+    // toastBootstrap.show()
     document.getElementById('emptyCallText').style.display = 'none';
 
 
@@ -197,7 +201,9 @@ let joinStream = async () => {
     document.getElementById('join-btn').disabled = true;
 
     try {
-        let joinError = await joinAndDisplayLocalStream();
+        let returnList = await joinAndDisplayLocalStream();
+        let joinError = returnList[0]
+        let userid = returnList[1]
         let joinErrorElement = document.getElementById('joinErrorHelp');
 
         if (joinError == "publishing") {
@@ -211,6 +217,40 @@ let joinStream = async () => {
             document.getElementById('lobby').style.display = 'none';
             document.getElementById('stream-controls').style.display = 'flex';
             document.getElementById('emptyCallText').style.display = 'flex';
+
+            // Question Display
+            let questionBackBtn = document.getElementById('questionDisplayBack');
+            let questionNextBtn = document.getElementById('questionDisplayNext');
+            document.getElementById('questionDisplay').innerHTML = 'Loading...';
+
+            document.getElementById('questionDisplayContainer').style.display = 'flex';
+
+            if (questionBackBtn.classList.contains('disabled') == false) {questionBackBtn.classList.add('disabled');}
+            if (questionNextBtn.classList.contains('disabled') == false) {questionNextBtn.classList.add('disabled');}
+            try {
+                questions = await getQuestionList(document.getElementById('channel-name-input').value.toString())
+                console.log(questions);
+                questionIndex = 0
+                document.getElementById('questionDisplay').innerHTML = questions[0]
+                document.getElementById('questionDisplayNumber').innerHTML = `Question 1 of ${questions.length}`
+                questionBackBtn.classList.add('disabled');
+
+                questionNextBtn.classList.remove('disabled');
+            }
+            catch (error) {
+                console.error("Error getting question list:", error);
+                document.getElementById('questionDisplay').innerHTML = "No questions found.";
+            }
+            
+            
+            // Join Whiteboard
+            let whiteboardUUID = await getWhiteboardUUID(document.getElementById('channel-name-input').value.toString())
+            let whiteboardRoomToken = await getRoomToken(whiteboardUUID)
+
+            console.log("Channel Name: " + document.getElementById('channel-name-input').value.toString())
+            console.log("Whiteboard Room Token: " + whiteboardRoomToken)
+            console.log("Whiteboard UUID: " + whiteboardUUID)
+            joinWhiteboardRoom(userid, whiteboardUUID, whiteboardRoomToken)
         }
     } catch (error) {
         console.error("Error joining stream:", error);
@@ -228,9 +268,11 @@ let leaveStreamAndRemoveLocalStream = async() => {
     document.getElementById('stream-controls').style.display = 'none';
     document.getElementById('video-streams').innerHTML = '';
     document.getElementById('emptyCallText').style.display = 'none';
+    document.getElementById('whiteboardControls').style.display = 'none';
+    document.getElementById('questionDisplayContainer').style.display = 'none';
 }
 
-let toggleMic = async (event) => {
+let toggleMic = async () => {
     let micButton = document.getElementById('mic-btn');
     if (localMicTrack.muted) {
         await localMicTrack.setMuted(false);
@@ -284,3 +326,18 @@ document.getElementById('cam-btn').addEventListener('click', toggleCam);
 document.getElementById('username-input').addEventListener('input', function (e) {
     document.getElementById('local-username').textContent = e.target.value;
 })
+document.getElementById('questionDisplayBack').addEventListener('click', function () {
+    questionIndex--;
+    if (questionIndex < 1) {document.getElementById('questionDisplayBack').classList.add('disabled');}
+    else if (questionIndex < (questions.length - 1)) {document.getElementById('questionDisplayNext').classList.remove('disabled');}
+    document.getElementById('questionDisplay').innerHTML = questions[questionIndex]
+    document.getElementById('questionDisplayNumber').innerHTML = `Question ${questionIndex + 1} of ${questions.length}`
+})
+document.getElementById('questionDisplayNext').addEventListener('click', function () {
+    questionIndex++;
+    if (questionIndex >= (questions.length-1)) {document.getElementById('questionDisplayNext').classList.add('disabled');}
+    else if (questionIndex > 0) {document.getElementById('questionDisplayBack').classList.remove('disabled');}
+    document.getElementById('questionDisplay').innerHTML = questions[questionIndex]
+    document.getElementById('questionDisplayNumber').innerHTML = `Question ${questionIndex + 1} of ${questions.length}`
+})
+
